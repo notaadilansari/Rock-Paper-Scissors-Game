@@ -1,9 +1,10 @@
 #rock paper scissor game
 #importing random for fair choice of computer
 import random
+
+
+
 #defining rpsgame class
-
-
 class rpsgame:
 	
   
@@ -19,7 +20,7 @@ class rpsgame:
 		
     
     #taking player choice
-		player_choice=input("Enter your move (rock/paper/scissor) : ")
+		player_choice=input("Enter your move (rock/paper/scissor) : ").lower() #using  .lower() function for convenience of user
 		l1=["rock","paper","scissor"]
 		random_sample=random.randint(0,2)
 		computer_choice=l1[random_sample]
@@ -42,7 +43,7 @@ class rpsgame:
 			print("Result : You lose")
 			self.computer_player+=1
 		elif player_choice=="scissor" and computer_choice=="paper":
-			print("Result : You lose")
+			print("Result : You Win")
 			self.player_score+=1
 		elif player_choice not in l1:
 			print("invalid choice \n choose again \n")
@@ -57,11 +58,26 @@ class rpsgame:
 		print("---SCOREBOARD---")
 		print(f"{self.name} : {self.player_score}")
 		print(f"Computer : {self.computer_score}")
+        if self.player_score==self.computer_score:
+			print("Match Result : Draw")
+		elif self.player_score>self.computer_score:
+			print("Match Result : Win")
+		else:
+			print("Match Result : Loss")
+			print("better luck next time")
+#taking name
 name=input("Enter Player Name: ")
+
+#taking number of round??
 round=int(input("Enter number of round : "))
 print("\n")
 player=rpsgame(name)
+
+
+#using loop to play the rps game till the number of round that user have entered 
 for i in range(0,round):
 	player.play_round()
 	print("\n")
+
+#printing score 
 player.show_score()
